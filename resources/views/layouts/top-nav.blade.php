@@ -12,17 +12,19 @@
             </button>
 
             <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}">Paypal for Laravel</a>
+            <a class="navbar-brand" href="{{ url('/') }}">Paypal for Laravel 5</a>
         </div>
 
-        <!-- Navigation links -->
+        <!-- Navigation Links -->
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="#">Products</a></li>
-                <li><a href="#">Checkout</a></li>
+                <li><a href="{{ url('/') }}">Products</a></li>
+                <li><a href="{{ url('/') }}">Sales</a></li>
+                <li><a href="{{ url('/') }}">News</a></li>
+                <li><a href="{{ url('/') }}">About Us</a></li>
             </ul>
 
-            <!-- Right Side Of Navbar -->
+            <!-- Right Side of Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 @if (! Cart::isEmpty())
                     <li class="navbar-text">
@@ -30,10 +32,11 @@
                         Total: {{ number_format(Cart::getTotal(), 2, ',', '.') }} &euro;
                     </li>
                     <li><a href="{{ url('/cart') }}">
-                            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"> </span> View Cart
+                            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> View Cart
                         </a>
                     </li>
                 @endif
+
                 <!-- Authentication Links -->
                 @if (Auth::guest())
                     <li><a href="{{ url('/login') }}">Login</a></li>

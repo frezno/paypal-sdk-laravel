@@ -3,31 +3,35 @@
 <?php
 $products = [
     0 => [
-        'sku' => '123-1',
+        'id' => 1,
+        'sku' => '12345-1',
         'title' => 'T-Shirt 1',
         'img' => 'pic_001.jpg',
-        'price' => '21.20 &euro;',
+        'price' => '21.20',
         'desc' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
     ],
     1 => [
-        'sku' => '123-2',
+        'id' => 2,
+        'sku' => '12345-2',
         'title' => 'T-Shirt 2',
         'img' => 'pic_002.jpg',
-        'price' => '22.20 &euro;',
+        'price' => '22.20',
         'desc' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
     ],
     2 => [
-        'sku' => '123-3',
+        'id' => 3,
+        'sku' => '12345-3',
         'title' => 'T-Shirt 3',
         'img' => 'pic_003.jpg',
-        'price' => '23.20 &euro;',
+        'price' => '23.20',
         'desc' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
     ],
     3 => [
-        'sku' => '123-4',
+        'id' => 4,
+        'sku' => '12345-4',
         'title' => 'T-Shirt 4',
         'img' => 'pic_004.jpg',
-        'price' => '24.20 &euro;',
+        'price' => '24.20',
         'desc' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
     ]
 ];
@@ -36,18 +40,15 @@ $products = [
 @section('content')
 <!-- Jumbotron Header -->
 <header class="jumbotron hero-spacer">
-    <h1>A Warm Welcome!</h1>
+    <h1>A Warm Welcome to our Shop!</h1>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
-    <p><a class="btn btn-primary btn-large">Call to action!</a>
-    </p>
 </header>
 
 <hr>
-
 <!-- Display Add-to-Cart Success Message -->
 @if (Session::has('success'))
-    <div class="alert alert-success alert-dismissible" role="alert">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <div class="alert alert-success" id="add-alert">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
         <strong>Success!</strong> {{ Session::get('success') }}
     </div>
 @endif
@@ -62,7 +63,7 @@ $products = [
                 <div class="caption">
                     <h3>{{ $p['title'] }}</h3>
                     <p>{{ $p['desc'] }}</p>
-                    <p>Our Price: {{ $p['price'] }}
+                    <p>Our Price: {{ $p['price'] }} &euro;</p>
 
                     <form method="post" action="{{ url('/addtocart') }}">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -71,9 +72,11 @@ $products = [
                         <button type="submit" class="btn btn-success">
                             Add to Cart <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
                         </button>
+                        <input type="hidden" name="id" value="{{ $p['id'] }}">
                         <input type="hidden" name="sku" value="{{ $p['sku'] }}">
                         <input type="hidden" name="title" value="{{ $p['title'] }}">
                         <input type="hidden" name="price" value="{{ $p['price'] }}">
+                        <input type="hidden" name="img" value="{{ $p['img'] }}">
                     </form>
 
                 </div>
@@ -82,4 +85,14 @@ $products = [
     @endforeach
 
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    $(document).ready(function(){
+        $(".close").click(function(){
+            $("#add-alert").alert('close');
+        });
+    });
+</script>
 @endsection

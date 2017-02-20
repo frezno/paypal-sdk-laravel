@@ -27,4 +27,11 @@ Route::get('sub_qty/{id}', 'CartController@subtractQuantity');
 Route::group(['prefix' => 'checkout'], function() {
     Route::get('address', 'CheckoutController@address');
     Route::get('confirm', 'CheckoutController@confirm');
+    Route::post('confirmed', 'CheckoutController@gotConfirmation');
 });
+
+//-- Paypal Payment
+// Route::get('checkout_paypal', 'PaypalController@preparePayment');
+// Route::get('pay_paypal/payit', [
+//     'as' => 'paypal.execute',
+//     'uses' => 'PaypalController@executePayment']);

@@ -101,7 +101,7 @@
     </div>
 
     <div class="col-sm-8 col-sm-offset-2 text-right">
-        <a class="btn btn-primary" href="{{ url('/checkout/confirm') }}">Checkout
+        <a class="btn btn-primary" href="{{ url('/checkout/confirm') }}">Checkout Confirmation
             <span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
         </a>
     </div>

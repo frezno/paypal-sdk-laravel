@@ -4,7 +4,7 @@
 
 &nbsp;
 
-### About Freznos Paypal for Larvel
+### About Freznos Paypal for Laravel
 
 
 

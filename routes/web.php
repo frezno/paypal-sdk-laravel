@@ -24,7 +24,7 @@ Route::get('add_qty/{id}', 'CartController@addQuantity');
 Route::get('sub_qty/{id}', 'CartController@subtractQuantity');
 
 //-- Checkout
-Route::group(['prefix' => 'checkout'], function() {
+Route::group(['prefix' => 'checkout'], function () {
     Route::get('address', 'CheckoutController@address');
     Route::get('confirm', 'CheckoutController@confirm');
     Route::post('confirmed', 'CheckoutController@gotConfirmation');

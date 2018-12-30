@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class CartController extends Controller
 {
     /**
-     * Add chosen product(s) to the shopping cart
+     * Add chosen product(s) to the shopping cart.
      *
      * @param  Request $request
      * @return \Illuminate\Http\RedirectResponse
@@ -19,16 +19,16 @@ class CartController extends Controller
 
         Cart::add($input['id'], $input['title'], $input['price'], $input['quantity'], [
             'sku'     => $input['sku'],
-            'img'     => $input['img']
+            'img'     => $input['img'],
         ]);
 
-        $msg = $input['quantity'] .' x '. $input['title'] .' added to cart';
+        $msg = $input['quantity'].' x '.$input['title'].' added to cart';
 
         return back()->withSuccess($msg);
     }
 
     /**
-     * Display basket with all its content
+     * Display basket with all its content.
      *
      * @return \Illuminate\View\View
      */
@@ -48,9 +48,9 @@ class CartController extends Controller
     }
 
     /**
-     * Add 1 item to the quantity count
+     * Add 1 item to the quantity count.
      *
-     * @param  integer $id
+     * @param  int $id
      * @return \Illuminate\Http\RedirectResponse
      */
     public function addQuantity($id)
@@ -61,9 +61,9 @@ class CartController extends Controller
     }
 
     /**
-     * Subtract 1 item from the quantity count
+     * Subtract 1 item from the quantity count.
      *
-     * @param  integer $id
+     * @param  int $id
      * @return \Illuminate\Http\RedirectResponse
      */
     public function subtractQuantity($id)
@@ -74,9 +74,9 @@ class CartController extends Controller
     }
 
     /**
-     * Remove selected product from shopping cart
+     * Remove selected product from shopping cart.
      *
-     * @param  integer $id
+     * @param  int $id
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function removeFromCart($id)
@@ -87,7 +87,7 @@ class CartController extends Controller
     }
 
     /**
-     * Delete complete shopping cart
+     * Delete complete shopping cart.
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */

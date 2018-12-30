@@ -13,7 +13,8 @@
     <!-- Styles -->
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 
-    <!-- Scripts -->
+    @yield('styles')
+
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),

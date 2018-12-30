@@ -1,67 +1,60 @@
 <!-- Navigation -->
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
     <div class="container">
-        <div class="navbar-header">
+        <a class="navbar-brand" href="{{ url('/') }}">
+            Paypal for Laravel 5
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <!-- Collapsed Hamburger -->
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                <span class="sr-only">Toggle Navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-            <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}">Paypal for Laravel 5</a>
-        </div>
-
-        <!-- Navigation Links -->
-        <div class="collapse navbar-collapse" id="app-navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="{{ url('/') }}">Products</a></li>
-                <li><a href="{{ url('/') }}">Sales</a></li>
-                <li><a href="{{ url('/') }}">News</a></li>
-                <li><a href="{{ url('/') }}">About Us</a></li>
+            <!-- Left Side Of Navbar -->
+            <ul class="navbar-nav mr-auto">
+                <li><a class="nav-link" href="{{ url('/') }}">Products</a></li>
+                <li><a class="nav-link" href="{{ url('/') }}">Sales</a></li>
+                <li><a class="nav-link" href="{{ url('/') }}">News</a></li>
+                <li><a class="nav-link" href="{{ url('/') }}">About Us</a></li>
             </ul>
 
-            <!-- Right Side of Navbar -->
-            <ul class="nav navbar-nav navbar-right">
+            <!-- Right Side Of Navbar -->
+            <ul class="navbar-nav ml-auto">
+
                 @if (! Cart::isEmpty())
                     <li class="navbar-text">
-                        <span class="badge">{{ Cart::getTotalQuantity() }}</span> Items &nbsp;&nbsp;
-                        Total: {{ number_format(Cart::getTotal(), 2, ',', '.') }} &euro;
+                        <span class="badge badge-pill badge-secondary">{{ Cart::getTotalQuantity() }}</span> Items &nbsp;&nbsp;
+                        Total: {{ number_format(Cart::getTotal(), 2, ',', '.') }} &euro; &nbsp;&nbsp;
                     </li>
-                    <li><a href="{{ url('/cart') }}">
-                            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> View Cart
+                    <li><a class="nav-link" href="{{ url('/cart') }}">
+                            View Cart &nbsp;&nbsp;
                         </a>
                     </li>
                 @endif
 
                 <!-- Authentication Links -->
-                @if (Auth::guest())
-                    <li><a href="{{ url('/login') }}">Login</a></li>
-                    <li><a href="{{ url('/register') }}">Register</a></li>
+                @guest
+                    <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                    <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                 @else
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="{{ url('/logout') }}"
-                                    onclick="event.preventDefault();
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
-                                    Logout
-                                </a>
+                                {{ __('Logout') }}
+                            </a>
 
-                                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-                            </li>
-                        </ul>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
                     </li>
-                @endif
+                @endguest
             </ul>
         </div>
     </div>

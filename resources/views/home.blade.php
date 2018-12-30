@@ -39,9 +39,9 @@ $products = [
 
 @section('content')
 <!-- Jumbotron Header -->
-<header class="jumbotron hero-spacer">
-    <h1>A Warm Welcome to our Shop!</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
+<header class="jumbotron">
+    <h1 class="display-4">A Warm Welcome to Our Shop!</h1>
+    <p class="lead">Here you can shop until you drop.</p>
 </header>
 
 <hr>
@@ -59,7 +59,7 @@ $products = [
     @foreach ($products as $p)
         <div class="col-sm-6 col-md-3">
             <div class="thumbnail">
-                <img src="./images/{{ $p['img'] }}" alt="{{ $p['title'] }}">
+                <img src="./images/{{ $p['img'] }}" height="240px" alt="{{ $p['title'] }}">
                 <div class="caption">
                     <h3>{{ $p['title'] }}</h3>
                     <p>{{ $p['desc'] }}</p>

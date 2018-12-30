@@ -18,7 +18,7 @@ All this is built using the fantastic [Laravel web application framework](https:
 
 If you're looking for an online shop based on Laravel, take a look here:  
 [FreznoShop on GitHub](https://github.com/frezno/freznoShop)  
-[FreznoShop Homepage](http://freznoshop.de)
+[FreznoShop Homepage](https://www.freznoshop.de)
 
 
 

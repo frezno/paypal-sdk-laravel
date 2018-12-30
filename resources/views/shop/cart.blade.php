@@ -1,12 +1,12 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="breadcrumbs">
+<nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li><a href="{{ url('/') }}">Home</a></li>
-        <li class="active">Shopping Cart</li>
+        <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+        <li class="breadcrumb-item active">Shopping Cart</li>
     </ol>
-</div>
+</nav>
 
 <div class="table-responsive">
     <table class="table table-condensed">
@@ -40,12 +40,12 @@
 
                 <td>
                     <div>
-                        <a href="{{ url('/sub_qty/'.$cart['id']) }}" class="cart_quantity_down">
-                            <span class="glyphicon glyphicon-minus" aria-hidden="true"> </span>
+                        <a href="{{ url('/sub_qty/'.$cart['id']) }}" class="cart_quantity_down btn btn-secondary">
+                            -
                         </a>
                         <input class="cart_quantity_input" type="text" name="quantity" value="{{ $cart['quantity'] }}" autocomplete="off" size="2">
-                        <a href="{{ url('/add_qty/'.$cart['id']) }}" class="cart_quantity_up">
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        <a href="{{ url('/add_qty/'.$cart['id']) }}" class="cart_quantity_up btn btn-secondary">
+                            +
                         </a>
                     </div>
                 </td>
@@ -57,7 +57,7 @@
 
                 <td>
                     <a href="{{ url('/remove/'.$cart['id']) }}" class="btn btn-danger">
-                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        x
                     </a>
                 </td>
             </tr>

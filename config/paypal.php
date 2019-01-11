@@ -17,9 +17,8 @@ return [
     //-- Replace these values by entering your own Client Id and Secret Id
     //-- by visiting https://developer.paypal.com/developer/applications/
     //-- You should use the .env file for this data though.
-    'client_id' => env('PAYPAL_CLIENT_ID', '[Enter your Client ID here]'),
-    'secret' => env('PAYPAL_CLIENT_SECRET', '[Enter your Client Secret ID here]'),
-
+    'client_id' => env('PAYPAL_CLIENT_ID', '[Enter your Client ID in the .env file]'),
+    'secret' => env('PAYPAL_CLIENT_SECRET', '[Enter your Client Secret ID in the .env file]'),
 
     'settings' => [
 
@@ -42,10 +41,10 @@ return [
 
         //-- Logging level can be one of any provided at \Psr\Log\LogLevel
         //-- Logging is most verbose in the 'DEBUG' level and
-        //-- decreases as you proceed towards ERROR
+        //-- decreases as you proceed towards INFO -> WARN -> ERROR
         //-- DEBUG level is disabled for live, to not log sensitive information.
         //-- If the level is set to DEBUG, it will be reduced to INFO automatically.
         //-- Imho you should use `INFO` level for logging in live environments.
         'log.LogLevel' => 'DEBUG',
-    ]
+    ],
 ];

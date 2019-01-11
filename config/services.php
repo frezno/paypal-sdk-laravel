@@ -40,4 +40,14 @@ return [
         ],
     ],
 
+    'paypal' => [
+        'client_id' => env('PAYPAL_CLIENT_ID', '[Enter your Client ID in the .env file]'),
+        'client_secret' => env('PAYPAL_CLIENT_SECRET', '[Enter your Client Secret ID in the .env file]'),
+        'settings' => [
+            'mode' => env('PAYPAL_MODE', 'sandbox'),
+            'log.LogEnabled' => true,
+            'log.FileName' => storage_path('logs/paypal.log'),
+            'log.LogLevel' => 'DEBUG',
+        ]
+    ],
 ];

@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use Cart;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-
 use PayPal\Api\Item;
 use PayPal\Api\Payer;
 use PayPal\Api\Amount;
@@ -13,11 +10,12 @@ use PayPal\Api\Details;
 use PayPal\Api\Payment;
 use PayPal\Api\ItemList;
 use PayPal\Api\Transaction;
+use PayPal\Rest\ApiContext;
+use Illuminate\Http\Request;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\ExecutePayment;
 use PayPal\Api\PaymentExecution;
-
-use PayPal\Rest\ApiContext;
+use App\Http\Controllers\Controller;
 use PayPal\Auth\OAuthTokenCredential;
 
 class PaypalController extends Controller
@@ -57,7 +55,7 @@ class PaypalController extends Controller
         // A resource representing a Payer that funds a payment.
         // For paypal account payments, set payment method to 'paypal'.
         $payer = new Payer();
-        $payer->setPaymentMethod("paypal");
+        $payer->setPaymentMethod('paypal');
 
         $cartSubTotal = Cart::getSubTotal();
         $shipping = 6.50;
@@ -88,7 +86,7 @@ class PaypalController extends Controller
         // Lets you specify a payment amount.
         // You can also specify additional details such as shipping, tax.
         $amount = new Amount();
-        $amount->setCurrency("EUR")
+        $amount->setCurrency('EUR')
             ->setDetails($details)
             ->setTotal($total);
 
@@ -98,7 +96,7 @@ class PaypalController extends Controller
         $transaction = new Transaction();
         $transaction->setAmount($amount)
             ->setItemList($itemList)
-            ->setDescription("FreznoShop")
+            ->setDescription('FreznoShop')
             ->setInvoiceNumber(uniqid());
 
         // ### Redirect urls
@@ -112,7 +110,7 @@ class PaypalController extends Controller
         // A Payment Resource; create one using
         // the above types and intent set to 'sale'
         $payment = new Payment();
-        $payment->setIntent("sale")
+        $payment->setIntent('sale')
             ->setPayer($payer)
             ->setRedirectUrls($redirectUrls)
             ->setTransactions([$transaction]);
@@ -129,7 +127,7 @@ class PaypalController extends Controller
         } catch (Exception $ex) {
 
             // Error: Payment failed
-            return redirect('checkout')->withErrors($ex->getCode() . ':' . $ex->getMessage());
+            return redirect('checkout')->withErrors($ex->getCode().':'.$ex->getMessage());
         }
 
         // ### Get redirect url
@@ -177,18 +175,19 @@ class PaypalController extends Controller
                 } catch (Exception $e) {
 
                     // Error: Get Payment
-                    return redirect('checkout')->withErrors($e->getCode() .':'. $e->getMessage());
+                    return redirect('checkout')->withErrors($e->getCode().':'.$e->getMessage());
                 }
             } catch (Exception $e) {
 
                 // Error: Executed Payment
-                return redirect('checkout')->withErrors($e->getCode() .':'. $e->getMessage());
+                return redirect('checkout')->withErrors($e->getCode().':'.$e->getMessage());
             }
 
             // Result: Get Payment
             $payments = Payment::get($paymentId, $this->apiContext);
 
             session()->push('paypal', 'success');
+
             return redirect()->action('CheckoutController@confirmPurchase');
 
         } else {
